@@ -1,4 +1,4 @@
-const rp = require('request-promise');
+const axios = require('axios');
 const cheerio = require('cheerio');
 const url = 'https://www.sorteonline.com.br/todas/resultados';
 
@@ -22,7 +22,8 @@ const lotogolSel = 'table.result-lotogol tr';
 const loterialSel = '.DivDeVisibilidade';
 
 function buscaUltimosResultados() {
-    return rp(url).then(function(html) {
+    return axios.get(url).then(function(response) {
+        const html = response.data;
         const resultados = {};
         const $ = cheerio.load(html);
         $(loterialSel).each((_, element) => {

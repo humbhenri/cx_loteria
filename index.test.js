@@ -1,10 +1,10 @@
 const buscaUltimosResultados = require('./index');
-const rp = require('request-promise');
 const fs = require('fs');
 const siteMock = fs.readFileSync('./mock.html', 'utf-8');
+const axios = require('axios');
 
-jest.mock('request-promise');
-rp.mockResolvedValue(siteMock);
+jest.mock('axios');
+axios.get.mockResolvedValue({ data: siteMock });
 
 test('retorna o resultado da Mega-Sena', () =>
     buscaUltimosResultados().then(data => {
