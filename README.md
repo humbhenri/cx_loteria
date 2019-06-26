@@ -9,7 +9,7 @@ API dos resultados das loterias da Caixa.
 Exemplo de uso:
 
 ```
-const buscaUltimosResultados = require('./index');
+const buscaUltimosResultados = require('@humbhenri/cx_loteria');
 buscaUltimosResultados().then(resultado => {
     console.log(JSON.stringify(resultado))
 });
