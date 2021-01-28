@@ -18,9 +18,13 @@
     ],
     "dependencies": {
         "axios": "^0.19.0",
-        "cheerio": "^1.0.0-rc.3"
+        "cheerio": "^1.0.0-rc.3",
+        "cli-table": "^0.3.4"
     },
     "devDependencies": {
         "jest": "^24.8.0"
+    },
+    "bin": {
+        "cx_loteria": "./cli.js"
     }
 }
