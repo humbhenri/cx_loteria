@@ -54,6 +54,6 @@ buscaUltimosResultados().then(
     console.log(table.toString());
   },
   (err) => {
-    console.err(err);
+    console.error(err);
   }
 );
