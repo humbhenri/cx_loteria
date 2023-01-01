@@ -22,15 +22,12 @@
         "cli-table": "^0.3.4"
     },
     "devDependencies": {
-        "jest": "^24.8.0"
+        "jest": "^29.3.1"
     },
     "bin": {
         "cx_loteria": "./cli.js"
     },
     "jest": {
-        "testEnvironment": "node",
-        "moduleNameMapper": {
-            "axios": "axios/dist/node/axios.cjs"
-        }
+        "testEnvironment": "node"
     }
 }
