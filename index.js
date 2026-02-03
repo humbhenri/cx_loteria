@@ -1,4 +1,8 @@
 const axios = require('axios');
+const UserAgents = require('user-agents');
+
+const userAgent = new UserAgents();
+axios.defaults.headers.common['User-Agent'] = userAgent.toString();
 
 const loterias = [
     'megasena',
