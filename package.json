@@ -9,7 +9,7 @@
         "name": "Humberto Pinheiro"
     },
     "scripts": {
-        "test": "jest --watchAll"
+        "test": "jest"
     },
     "keywords": [
         "caixa",
