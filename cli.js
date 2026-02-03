@@ -17,39 +17,46 @@ buscaUltimosResultados().then(
     });
     Object.keys(resultados).forEach((loteriaNome) => {
       let {
-        nome,
-        dataSorteio,
-        premio,
-        numConcurso,
-        resultado,
-        resultadoDuplaSena1,
-        resultadoDuplaSena2,
+        tipoJogo,
+        dataApuracao,
+        valorEstimadoProximoConcurso,
+        numero,
+        listaDezenas,
+        listaDezenasSegundoSorteio,
+        listaResultadoEquipeEsportiva,
       } = resultados[loteriaNome];
-      if (nome == "Dupla Sena") {
-        resultado = resultadoDuplaSena1 + "\n" + resultadoDuplaSena2;
-      } else if (nome == "Loteca" || nome == "Lotogol") {
+
+      const nome = loteriaNome;
+      let resultado = listaDezenas;
+      if (tipoJogo == "DUPLA_SENA") {
+        resultado = listaDezenas + "\n" + listaDezenasSegundoSorteio;
+      } else if (tipoJogo == "LOTECA") {
         let loteca = "";
-        resultado.forEach(({ casa, casaGols, visitante, visitanteGols }) => {
-          loteca +=
-            casa +
-            " " +
-            casaGols +
-            " x " +
-            visitanteGols +
-            " " +
-            visitante +
-            "\n";
-        });
+        listaResultadoEquipeEsportiva.forEach(
+          ({ nomeEquipeUm, nuGolEquipeUm, nomeEquipeDois, nuGolEquipeDois }) => {
+            loteca +=
+              nomeEquipeUm +
+              " " +
+              nuGolEquipeUm +
+              " x " +
+              nuGolEquipeDois +
+              " " +
+              nomeEquipeDois +
+              "\n";
+          }
+        );
         resultado = loteca;
       }
       // esses ficaram muito grandes, para não estourar a tabela divido em duas linhas
-      else if (nome == "Lotomania" || nome == "Lotofácil") {
+      else if (tipoJogo == "LOTOMANIA" || tipoJogo == "LOTOFACIL") {
         resultado =
           resultado.slice(0, resultado.length / 2).join(",") +
           "\n" +
           resultado.slice(resultado.length / 2).join(",");
       }
-      table.push([nome, dataSorteio, premio, numConcurso, resultado]);
+      const premio = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorEstimadoProximoConcurso);
+
+      table.push([nome, dataApuracao, premio, numero, resultado]);
     });
     console.log(table.toString());
   },
